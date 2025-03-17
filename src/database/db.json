@@ -1,0 +1,14 @@
+{
+  "users": [
+    { "id": "1", "name": "Joe", "email": "test1@gmail.com", "role": "admin" },
+    { "id": "2", "name": "Jane", "email": "test2@gmail.com", "role": "user" }
+  ],
+  "products": [
+    { "id": 1, "name": "Laptop", "price": 1000 },
+    { "id": 2, "name": "Phone", "price": 500 }
+  ],
+  "tokens": [
+    { "id": 1, "token": "token1", "expired": "200000000", "userId": 1 },
+    { "id": 2, "token": "token2", "expired": "200000000", "userId": 2 }
+  ]
+}
