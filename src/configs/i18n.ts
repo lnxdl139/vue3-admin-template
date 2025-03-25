@@ -1,8 +1,9 @@
 import { createI18n } from 'vue-i18n'
-import { ELocale, LOCALE } from '@/constants'
+import { LOCALE } from '@/constants'
 import en from '@/locales/en'
 import ja from '@/locales/ja'
 import { storageHelper } from '@/utils'
+import { ELocale } from '@/enums'
 
 const setupI18n = () => {
   const storage = storageHelper()

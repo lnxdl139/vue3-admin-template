@@ -1,6 +1,6 @@
 import { reactive } from 'vue'
 import { defineStore } from 'pinia'
-import { ETheme } from '@/constants'
+import { ETheme } from '@/enums'
 
 interface IAppState {
   loading: boolean

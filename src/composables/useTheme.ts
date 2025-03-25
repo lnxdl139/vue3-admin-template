@@ -1,19 +1,19 @@
-import { ref, watchEffect } from "vue";
+import { ref, watchEffect } from 'vue'
 
-const THEME_KEY = "selected-theme";
+const THEME_KEY = 'selected-theme'
 
 export function useTheme() {
-  const theme = ref(localStorage.getItem(THEME_KEY) || "light");
+  const theme = ref(localStorage.getItem(THEME_KEY) || 'light')
 
   const setTheme = (newTheme: string) => {
-    theme.value = newTheme;
-    localStorage.setItem(THEME_KEY, newTheme);
-    document.documentElement.setAttribute("data-theme", newTheme);
-  };
+    theme.value = newTheme
+    localStorage.setItem(THEME_KEY, newTheme)
+    document.documentElement.setAttribute('data-theme', newTheme)
+  }
 
   watchEffect(() => {
-    setTheme(theme.value);
-  });
+    setTheme(theme.value)
+  })
 
-  return { theme, setTheme };
+  return { theme, setTheme }
 }

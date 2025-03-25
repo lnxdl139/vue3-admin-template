@@ -32,4 +32,3 @@ export const toastError = (options: NotificationParamsTyped) => {
   const config = handleConfig(options)
   ElNotification.error(config)
 }
-

@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { ERole } from '@/constants'
 import DefaultLayout from '@/layouts/Default.vue'
 import Dashboard from '@/views/dashboard/index.vue'
 import AuthLayout from '@/layouts/Auth.vue'
@@ -9,6 +8,7 @@ import preview from '@/views/product/preview.vue'
 import List from '@/views/product/list.vue'
 import setup from '@/components/icons/setup.vue'
 import { markRaw } from 'vue'
+import { ERole } from '@/enums'
 
 export const publicRoutes: TCustomRouteRecord[] = [
   {
@@ -90,13 +90,21 @@ export const privateRoutes: TCustomRouteRecord[] = [
             path: '',
             component: List,
             name: 'product-list',
-            meta: { title: 'Product Management', roles: [ERole.USER, ERole.ADMIN], icon: markRaw(setup) },
+            meta: {
+              title: 'Product Management',
+              roles: [ERole.USER, ERole.ADMIN],
+              icon: markRaw(setup),
+            },
           },
           {
             path: 'preview',
             component: preview,
             name: 'product-detail',
-            meta: { title: 'Product Preview', roles: [ERole.USER, ERole.ADMIN], icon: markRaw(setup) },
+            meta: {
+              title: 'Product Preview',
+              roles: [ERole.USER, ERole.ADMIN],
+              icon: markRaw(setup),
+            },
           },
         ],
       },

@@ -3,15 +3,15 @@ import { defineStore } from 'pinia'
 import type { IUser } from '@/types'
 
 const useUserStore = defineStore('user', () => {
-  const userRef = ref<IUser | null>(null)
+  const user = ref<IUser | null>(null)
 
-  const setUser = (user: IUser) => {
-    userRef.value = user
+  const setUser = (newUser: IUser) => {
+    user.value = newUser
   }
 
-  const resetUser = () => (userRef.value = null)
+  const resetUser = () => (user.value = null)
 
-  return { userRef, setUser, resetUser }
+  return { user, setUser, resetUser }
 })
 
 export default useUserStore

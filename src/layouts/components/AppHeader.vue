@@ -1,7 +1,7 @@
 <script setup lang="ts">
   import { ref, computed, watchEffect, watch } from 'vue'
   import { useRoute } from 'vue-router'
-  import { ElSwitch, ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
+  import { ElDropdown, ElDropdownMenu, ElDropdownItem } from 'element-plus'
   import { useI18n } from 'vue-i18n'
 
   const route = useRoute()
@@ -9,25 +9,27 @@
 
   const selectedTheme = ref(localStorage.getItem('theme') || 'green')
 
-const changeTheme = () => {
-  document.documentElement.setAttribute('class', selectedTheme.value)
-  document.documentElement.setAttribute('data-theme', 'dark')
-  localStorage.setItem('theme', selectedTheme.value)
-}
+  const changeTheme = () => {
+    document.documentElement.setAttribute('class', selectedTheme.value)
+    document.documentElement.setAttribute('data-theme', 'dark')
+    localStorage.setItem('theme', selectedTheme.value)
+  }
 
-// Áp dụng theme từ localStorage khi tải trang
-watchEffect(() => {
-  changeTheme()
-})
+  watchEffect(() => {
+    changeTheme()
+  })
 
-watch(() => selectedTheme.value, (newTheme, oldTheme) => {
-  if (newTheme === oldTheme) return
-  changeTheme()
-})
+  watch(
+    () => selectedTheme.value,
+    (newTheme, oldTheme) => {
+      if (newTheme === oldTheme) return
+      changeTheme()
+    },
+  )
 
   const languages = [
-    { label: '🇻🇳 Tiếng Việt', value: 'vi' },
-    { label: '🇺🇸 English', value: 'en' },
+    { label: 'japan', value: 'ja' },
+    { label: 'English', value: 'en' },
   ]
 
   const changeLanguage = (lang: string) => {
@@ -61,12 +63,12 @@ watch(() => selectedTheme.value, (newTheme, oldTheme) => {
     </nav>
 
     <div class="theme-switcher">
-    <label>Chọn Theme:</label>
-    <el-select v-model="selectedTheme" placeholder="Chọn theme" @change="changeTheme">
-      <el-option label="light" value="light"></el-option>
-      <el-option label="dark" value="dark"></el-option>
-    </el-select>
-  </div>
+      <label>Theme:</label>
+      <el-select v-model="selectedTheme" placeholder="Chọn theme" @change="changeTheme">
+        <el-option label="light" value="light"></el-option>
+        <el-option label="dark" value="dark"></el-option>
+      </el-select>
+    </div>
 
     <div class="actions">
       <!-- <ElSwitch v-model="isDarkMode" @change="toggleTheme" active-text="🌙" inactive-text="☀️" /> -->

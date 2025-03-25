@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { ERole } from '@/constants'
 import type { IRouteMenu, TCustomRouteRecord } from '@/types'
 import router from '@/router'
+import type { ERole } from '@/enums'
 
 export const filterRoutesByRole = (
   routes: TCustomRouteRecord[],

@@ -1,7 +1,8 @@
 import { storageHelper } from '@/utils'
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import { ELocale, LOCALE } from '@/constants'
+import { LOCALE } from '@/constants'
+import { ELocale } from '@/enums'
 
 const useLocaleStore = defineStore('locale', () => {
   const { getStorage, setStorage } = storageHelper()
