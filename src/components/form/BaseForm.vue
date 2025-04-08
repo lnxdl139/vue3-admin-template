@@ -1,15 +1,15 @@
-<!-- eslint-disable @typescript-eslint/no-explicit-any -->
 <script lang="ts" setup>
   import { ElForm, ElRow, ElCol } from 'element-plus'
   import { useForm, type GenericObject } from 'vee-validate'
-  import type { PartialDeep } from 'type-fest'
-  import { computed, useSlots, type MaybeRef, type Slots } from 'vue'
+  import { computed, useSlots, type Slots } from 'vue'
   import { toTypedSchema } from '@vee-validate/zod'
+  import type { PartialDeep } from 'type-fest'
+  import type { ZodType, ZodTypeDef } from 'zod'
 
   interface IProps {
     disabled?: boolean
-    initialValues: PartialDeep<GenericObject, object> | null | undefined
-    schema: MaybeRef<any>
+    initialValues: PartialDeep<GenericObject, object>
+    schema: ZodType<anyType, ZodTypeDef, anyType>
     submitText?: string
     cancelText?: string
     labelPosition?: 'top' | 'right'
@@ -23,7 +23,7 @@
   })
 
   const methods = useForm({
-    initialValues: props.initialValues ?? {},
+    initialValues: props.initialValues,
     validationSchema: toTypedSchema(props.schema),
   })
 
@@ -31,7 +31,7 @@
   const hasAction = computed(() => !!slots.action)
 
   const emits = defineEmits<{
-    (e: 'submit', values: any): void
+    (e: 'submit', values: anyType): void
   }>()
 
   const onSubmit = methods.handleSubmit(async (values) => {
@@ -39,12 +39,13 @@
   })
 
   defineExpose({ ...methods, onSubmit })
+  
 </script>
 <template>
   <el-form v-bind="$attrs" :label-position="labelPosition">
     <slot></slot>
 
-    <slot name="action" v-if="hasAction"></slot>
+    <slot name="action" v-if="hasAction" :submit="onSubmit"></slot>
     <el-row :gutter="20" v-else>
       <el-col :span="12" :offset="6">
         <base-button :disabled="disabled">Cancel</base-button>
